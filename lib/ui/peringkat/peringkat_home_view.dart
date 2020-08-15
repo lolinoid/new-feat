@@ -10,6 +10,16 @@ class PeringkatHomeView extends StatelessWidget {
           ImgHomeBgWidget(
             imgaset: 'images/empat.png',
           ),
+          Positioned(
+            child: IconButton(
+                iconSize: 90,
+                icon: Image.asset(
+                  'images/medal.png',
+                ),
+                onPressed: null),
+            top: 100,
+            right: 100,
+          )
         ],
       ),
     );

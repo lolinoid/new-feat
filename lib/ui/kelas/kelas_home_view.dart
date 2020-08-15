@@ -10,6 +10,26 @@ class KelasHomeView extends StatelessWidget {
           ImgHomeBgWidget(
             imgaset: 'images/dua.png',
           ),
+          Positioned(
+            child: IconButton(
+                iconSize: 90,
+                icon: Image.asset(
+                  'images/online-class.png',
+                ),
+                onPressed: null),
+            left: 50,
+            top: 190,
+          ),
+          Positioned(
+            child: IconButton(
+                iconSize: 70,
+                icon: Image.asset(
+                  'images/training.png',
+                ),
+                onPressed: null),
+            right: 70,
+            top: 130,
+          ),
         ],
       ),
     );

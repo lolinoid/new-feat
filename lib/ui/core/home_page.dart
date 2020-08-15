@@ -4,19 +4,61 @@ import 'package:newfeat/ui/kelas/kelas_home_view.dart';
 import 'package:newfeat/ui/peringkat/peringkat_home_view.dart';
 import 'package:newfeat/ui/perpus/perpus_home_view.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int itemSelected;
+  PageController pageController;
+
+  @override
+  void initState() {
+    super.initState();
+    itemSelected = 0;
+    pageController = PageController();
+  }
+
+  @override
+  void dispose() {
+    pageController.dispose();
+    super.dispose();
+  }
+
+  void onSelectedbotItem(int index) {
+    setState(() {
+      itemSelected = index;
+    });
+    pageController.animateToPage(
+      index,
+      duration: const Duration(milliseconds: 400),
+      curve: Curves.easeInOut,
+    );
+  }
+
+  void _onpagechanged(index) {
+    setState(() {
+      itemSelected = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         shadowColor: Colors.white,
-        backgroundColor: Colors.green[800],
+        backgroundColor: Colors.blueGrey[400],
         leading: Icon(Icons.account_circle),
       ),
       body: Stack(
         children: [
           Container(
             child: PageView(
+              onPageChanged: (index) {
+                _onpagechanged(index);
+              },
+              controller: pageController,
               children: [
                 ArenaHomeView(),
                 KelasHomeView(),
@@ -34,27 +76,45 @@ class HomePage extends StatelessWidget {
               )),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          backgroundColor: Colors.green[900],
-          items: [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.gamepad),
-              title: Text('ARENA'),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.check_box),
-              title: Text('KELAS'),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.local_library),
-              title: Text('PERPUS'),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.school),
-              title: Text('PERINGKAT'),
-            ),
-          ]),
+      bottomNavigationBar: botnav(),
     );
+  }
+
+  Widget botnav() {
+    return BottomNavigationBar(
+        currentIndex: itemSelected,
+        onTap: (index) {
+          onSelectedbotItem(index);
+        },
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        type: BottomNavigationBarType.shifting,
+        backgroundColor: Colors.blueGrey[400],
+        items: [
+          BottomNavigationBarItem(
+            backgroundColor: Colors.blueGrey[400],
+            icon: IconButton(
+                icon: Image.asset('images/arena.png'), onPressed: null),
+            title: Text('ARENA'),
+          ),
+          BottomNavigationBarItem(
+            backgroundColor: Colors.blueGrey[400],
+            icon: IconButton(
+                icon: Image.asset('images/teacher.png'), onPressed: null),
+            title: Text('KELAS'),
+          ),
+          BottomNavigationBarItem(
+            backgroundColor: Colors.blueGrey[400],
+            icon: IconButton(
+                icon: Image.asset('images/brain.png'), onPressed: null),
+            title: Text('PERPUS'),
+          ),
+          BottomNavigationBarItem(
+            backgroundColor: Colors.blueGrey[400],
+            icon: IconButton(
+                icon: Image.asset('images/winner.png'), onPressed: null),
+            title: Text('PERINGKAT'),
+          ),
+        ]);
   }
 }

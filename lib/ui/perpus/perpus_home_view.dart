@@ -10,6 +10,16 @@ class PerpusHomeView extends StatelessWidget {
           ImgHomeBgWidget(
             imgaset: 'images/tiga.png',
           ),
+          Positioned(
+            child: IconButton(
+                iconSize: 120,
+                icon: Image.asset(
+                  'images/perpus.png',
+                ),
+                onPressed: null),
+            left: 100,
+            top: 100,
+          ),
         ],
       ),
     );
