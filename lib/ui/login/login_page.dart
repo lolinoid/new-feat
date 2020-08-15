@@ -6,23 +6,45 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Center(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Image.asset('images/login.jpg'),
-          btnLogin(context),
-        ],
-      ),
-    ));
+            child: Stack(
+      children: [
+        Positioned(
+          child: Image.asset(
+            'images/pintucrop.gif',
+            height: MediaQuery.of(context).size.height,
+            fit: BoxFit.fitHeight,
+          ),
+          bottom: 0,
+          right: -30,
+        ),
+        Positioned(
+          child: Column(
+            children: [
+              IconButton(
+                  iconSize: 150,
+                  icon: Image.asset('images/login.png'),
+                  onPressed: null),
+              btnLogin(context),
+            ],
+          ),
+          right: 60,
+          top: 120,
+        ),
+      ],
+    )));
   }
 
   Widget btnLogin(ctx) {
     return MaterialButton(
+      color: Colors.red,
       onPressed: () {
         Navigator.pushReplacement(
             ctx, MaterialPageRoute(builder: (_) => HomePage()));
       },
-      child: Text('Login'),
+      child: Text(
+        'Sign in With Google',
+        style: TextStyle(color: Colors.white),
+      ),
     );
   }
 }
