@@ -17,7 +17,7 @@ class PerpusHomeView extends StatelessWidget {
                   'images/perpus.png',
                 ),
                 onPressed: null),
-            left: 100,
+            right: 20,
             top: 100,
           ),
         ],

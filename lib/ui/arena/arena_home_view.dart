@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:newfeat/ui/arena/game_cerdascermat_page.dart';
 import 'package:newfeat/ui/core/img_home_bg_widget.dart';
 
 class ArenaHomeView extends StatelessWidget {
@@ -12,11 +13,13 @@ class ArenaHomeView extends StatelessWidget {
           ),
           Positioned(
             child: IconButton(
-                iconSize: 120,
-                icon: Image.asset(
-                  'images/vs.png',
-                ),
-                onPressed: null),
+              iconSize: 120,
+              icon: Image.asset(
+                'images/vs.png',
+              ),
+              onPressed: () => Navigator.of(context).push(
+                  MaterialPageRoute(builder: (_) => GameCerdascermatPage())),
+            ),
             left: 20,
             top: 70,
           ),
@@ -29,6 +32,16 @@ class ArenaHomeView extends StatelessWidget {
                 onPressed: null),
             left: 170,
             top: 130,
+          ),
+          Positioned(
+            child: IconButton(
+                iconSize: 50,
+                icon: Image.asset(
+                  'images/cell.png',
+                ),
+                onPressed: null),
+            left: 270,
+            top: 150,
           ),
         ],
       ),
