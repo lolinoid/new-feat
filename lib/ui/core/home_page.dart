@@ -70,9 +70,12 @@ class _HomePageState extends State<HomePage> {
           Positioned(
               bottom: -10,
               right: -25,
-              child: Image.asset(
-                'images/cut.png',
-                height: MediaQuery.of(context).size.height / 3,
+              child: Hero(
+                tag: 'myloli',
+                child: Image.asset(
+                  'images/cut.png',
+                  height: MediaQuery.of(context).size.height / 3,
+                ),
               )),
         ],
       ),

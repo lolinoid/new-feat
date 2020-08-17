@@ -1,5 +1,5 @@
 class StaticData {
-  static const mapel = [
+  static const List<String> mapel = [
     'Matematika',
     'Bhs Indonesia',
     'Bhs Inggris',

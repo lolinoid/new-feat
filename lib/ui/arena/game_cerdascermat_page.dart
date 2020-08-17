@@ -1,7 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:newfeat/service/static_data.dart';
+import 'package:newfeat/ui/arena/cerdascermat_carilawan_page.dart';
 
-class GameCerdascermatPage extends StatelessWidget {
+class GameCerdascermatPage extends StatefulWidget {
+  @override
+  _GameCerdascermatPageState createState() => _GameCerdascermatPageState();
+}
+
+class _GameCerdascermatPageState extends State<GameCerdascermatPage> {
+  String _val;
+
+  void ondropdownChange(value) {
+    setState(() {
+      _val = value;
+      print(value);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,9 +31,12 @@ class GameCerdascermatPage extends StatelessWidget {
           Positioned(
             bottom: -10,
             right: -25,
-            child: Image.asset(
-              'images/cut.png',
-              width: MediaQuery.of(context).size.width / 2.5,
+            child: Hero(
+              tag: 'myloli',
+              child: Image.asset(
+                'images/cut.png',
+                width: MediaQuery.of(context).size.width / 2.5,
+              ),
             ),
           ),
           Positioned(
@@ -37,21 +55,36 @@ class GameCerdascermatPage extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                         fontSize: 20),
                   ),
+                  SizedBox(
+                    height: 10,
+                  ),
                   Card(
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 15),
-                      child: DropdownButton(
-                          style: TextStyle(
-                              color: Colors.white, fontWeight: FontWeight.bold),
+                      child: DropdownButton<String>(
+                          value: _val,
                           hint: Text('Mata Pelajaran'),
                           items: StaticData.mapel
-                              .map((e) => DropdownMenuItem(child: Text(e)))
+                              .map((e) => DropdownMenuItem<String>(
+                                    child: Text(e),
+                                    value: e,
+                                  ))
                               .toList(),
-                          onChanged: null),
+                          onChanged: (val) {
+                            ondropdownChange(val);
+                          }),
                     ),
                   ),
+                  SizedBox(
+                    height: 10,
+                  ),
                   MaterialButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (_) => CerdasCermatCariLawanPage(
+                                mapel: _val,
+                              )));
+                    },
                     child: Text('Cari Lawan'),
                     color: Colors.yellow[800],
                   )
