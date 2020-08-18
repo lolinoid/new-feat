@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:newfeat/ui/core/home_page.dart';
 
 class LoginPage extends StatelessWidget {
@@ -38,8 +39,7 @@ class LoginPage extends StatelessWidget {
     return MaterialButton(
       color: Colors.red,
       onPressed: () {
-        Navigator.pushReplacement(
-            ctx, MaterialPageRoute(builder: (_) => HomePage()));
+        Get.to(HomePage());
       },
       child: Text(
         'Sign in With Google',

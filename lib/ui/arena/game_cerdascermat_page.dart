@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:newfeat/service/static_data.dart';
 import 'package:newfeat/ui/arena/cerdascermat_carilawan_page.dart';
 
@@ -80,10 +81,9 @@ class _GameCerdascermatPageState extends State<GameCerdascermatPage> {
                   ),
                   MaterialButton(
                     onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (_) => CerdasCermatCariLawanPage(
-                                mapel: _val,
-                              )));
+                      Get.to(CerdasCermatCariLawanPage(
+                        mapel: _val,
+                      ));
                     },
                     child: Text('Cari Lawan'),
                     color: Colors.yellow[800],
