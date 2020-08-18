@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CerdasCermatCariLawanPage extends StatelessWidget {
   final String mapel;
@@ -83,6 +84,55 @@ class CerdasCermatCariLawanPage extends StatelessWidget {
               _cardProfil(),
             ],
           ),
+          Card(
+            color: Colors.amber,
+            margin: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+            child: ListTile(title: Text('Soalnya')),
+          ),
+          Divider(),
+          Card(
+            margin: EdgeInsets.symmetric(horizontal: 40, vertical: 5),
+            child: ListTile(title: Text('jawaban a')),
+          ),
+          Card(
+            margin: EdgeInsets.symmetric(horizontal: 40, vertical: 5),
+            child: ListTile(title: Text('jawaban b')),
+          ),
+          Card(
+            margin: EdgeInsets.symmetric(horizontal: 40, vertical: 5),
+            child: ListTile(title: Text('jawaban c')),
+          ),
+          Card(
+            margin: EdgeInsets.symmetric(horizontal: 40, vertical: 5),
+            child: ListTile(title: Text('jawaban d')),
+          ),
+        ],
+      );
+    }
+
+    Widget _resultView() {
+      return Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              _cardProfil(),
+              Image.asset(
+                'images/vstext.png',
+                width: MediaQuery.of(context).size.width / 4,
+              ),
+              _cardProfil(),
+            ],
+          ),
+          Image.asset(
+            'images/you.png',
+            width: MediaQuery.of(context).size.width / 2,
+          ),
+          MaterialButton(
+            onPressed: () => Get.back(),
+            child: Text('OK!'),
+            color: Colors.green,
+          )
         ],
       );
     }
@@ -94,7 +144,8 @@ class CerdasCermatCariLawanPage extends StatelessWidget {
         title: Text('Mencari Lawan....'),
       ),
       // body: _bodySearching(),
-      body: _bodyPlay(),
+      // body: _bodyPlay(),
+      body: _resultView(),
     );
   }
 }
