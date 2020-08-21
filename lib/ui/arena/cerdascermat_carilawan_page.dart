@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:newfeat/ui/util/screen_size.dart';
 
 class CerdasCermatCariLawanPage extends StatelessWidget {
   final String mapel;
@@ -8,13 +9,14 @@ class CerdasCermatCariLawanPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Scsz _scren = Scsz(context);
     Widget _cardProfil() {
       return Card(
         child: Column(
           children: [
             Image.asset(
               'images/student.png',
-              width: MediaQuery.of(context).size.width / 4,
+              width: _scren.width / 4,
             ),
             Text(
               'Namanya',
@@ -33,7 +35,7 @@ class CerdasCermatCariLawanPage extends StatelessWidget {
             tag: 'myloli',
             child: Image.asset(
               'images/cut.png',
-              width: MediaQuery.of(context).size.width / 2.5,
+              width: _scren.width / 2.5,
             ),
           ),
         ),
@@ -54,7 +56,7 @@ class CerdasCermatCariLawanPage extends StatelessWidget {
               ),
               Image.asset(
                 'images/vstext.png',
-                width: MediaQuery.of(context).size.width / 4,
+                width: _scren.width / 4,
               ),
               Padding(
                 padding: const EdgeInsets.only(right: 30),
@@ -79,7 +81,7 @@ class CerdasCermatCariLawanPage extends StatelessWidget {
               _cardProfil(),
               Image.asset(
                 'images/vstext.png',
-                width: MediaQuery.of(context).size.width / 4,
+                width: _scren.width / 4,
               ),
               _cardProfil(),
             ],
@@ -119,14 +121,14 @@ class CerdasCermatCariLawanPage extends StatelessWidget {
               _cardProfil(),
               Image.asset(
                 'images/vstext.png',
-                width: MediaQuery.of(context).size.width / 4,
+                width: _scren.width / 4,
               ),
               _cardProfil(),
             ],
           ),
           Image.asset(
             'images/you.png',
-            width: MediaQuery.of(context).size.width / 2,
+            width: _scren.width / 2,
           ),
           MaterialButton(
             onPressed: () => Get.back(),
