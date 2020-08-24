@@ -4,7 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+import 'package:newfeat/service/auth/googlesigin.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';
@@ -12,11 +12,9 @@ part 'auth_state.dart';
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   FirebaseAuth _auth;
   User user;
-  GoogleSignIn _googleSignIn;
 
   AuthBloc()
       : _auth = FirebaseAuth.instance,
-        _googleSignIn = GoogleSignIn(),
         super(AuthUnauthenticated());
 
   @override
@@ -26,15 +24,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     try {
       yield AuthAuthenticating();
 
-      final GoogleSignInAccount googleUser = await _googleSignIn.signIn();
-      final GoogleSignInAuthentication googleAuth =
-          await googleUser.authentication;
-      final AuthCredential credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth.accessToken,
-        idToken: googleAuth.idToken,
-      );
-      await _auth.signInWithCredential(credential);
-      yield AuthAuthenticated();
+      var signResult = await signInWithGoogle();
+      if (signResult.user != null) {
+        yield AuthAuthenticated();
+      } else {
+        yield AuthUnauthenticated();
+      }
     } catch (e) {
       print(e);
 

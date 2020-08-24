@@ -34,3 +34,10 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+class AuthCheck extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder();
+  }
+}
